@@ -1,6 +1,14 @@
 const recipesList = document.getElementById("recipes-list");
+const recipesListF = document.getElementById("recipes-listfilter");
+
 const input = document.getElementById("input");
-let value = "fish";
+//let value = "fish";
+
+
+const cookingTime = 20;
+
+let recipeExtract=[],
+dish, newRecipe;
 
 let API_URL; //= `https://api.edamam.com/search?q=${value}&app_id=ae955ef4&app_key=ede746169d09b2dacf6c78ef642dbf97&from=0&to=15&calories=591-722&health=alcohol-free`;
 
@@ -11,8 +19,15 @@ const fetchData = () => {
     })
     .then((json) => {
       console.log("recipe list", json);
+      recipeExtract = json.hits
+      console.log("extract", recipeExtract)
+
       json.hits.forEach((item) => {
         // console.log(item);
+
+
+        //+if (item.recipe.totalTime < cookingTime) {
+        
         recipesList.innerHTML += `
             <li>
                 ${item.recipe.label}
@@ -23,40 +38,52 @@ const fetchData = () => {
                 <div>Total time: ${item.recipe.totalTime} minutes</div>
             </li>
         `;
-      });
+
+       //+ }   
+        
+      }); 
+      filterCookingTime()
+       
     });
-    checkCookingTime()
+    
+    
+    
+  //filterCookingTime()
+    
 };
 
 
+const filterCookingTime = () => {
+  
+  console.log("check1")
+  recipesListF.innerHTML = ""
 
-const checkCookingTime = () => {
-  let keep
-  if (userSelectTime <= recipeCookingTime) {
-    keep = true
-} else {
-  keep = false
-  filterCookingTime()
-}
-}
+  recipeExtract.forEach((item) => {
+    
+    //recipesListF.innerHTML = ""
 
-const filterCookingTime = (keep) => {
-  if (keep === false) {
-    recipesDisplay = recipesDispaly.filter((recipes) => item.value !== value)
-  } else {
-    recipesDisplay = recipesDispaly.filter((recipes) => item.value === value)
-  }
-  recipesDisplay.innerHTML += `
-  <li>
-      ${item.recipe.label}
-      <a href="${item.recipe.url}">
-          <img src="${item.recipe.image}"/>
-      </a>
-      <div> This dish is from: ${item.recipe.source}</div>
-      <div>Total time: ${item.recipe.totalTime} minutes</div>
-  </li>
-`;
-}
+    if (item.recipe.totalTime < cookingTime) {
+    
+      recipesListF.innerHTML += `
+        <li>
+          ${item.recipe.label}
+          <a href="${item.recipe.url}">
+            <img src="${item.recipe.image}"/>
+          </a>
+          <div> This dish is from: ${item.recipe.source}</div>
+          <div>Total time: ${item.recipe.totalTime} minutes</div>
+        </li>
+      `;
+    } else {
+      //do nothing
+    }
+  }) 
+  console.log("check2")
+} 
+
+
+
+console.log("check3")
 
 
 
