@@ -25,7 +25,41 @@ const fetchData = () => {
         `;
       });
     });
+    checkCookingTime()
 };
+
+
+
+const checkCookingTime = () => {
+  let keep
+  if (userSelectTime <= recipeCookingTime) {
+    keep = true
+} else {
+  keep = false
+  filterCookingTime()
+}
+}
+
+const filterCookingTime = (keep) => {
+  if (keep === false) {
+    recipesDisplay = recipesDispaly.filter((recipes) => item.value !== value)
+  } else {
+    recipesDisplay = recipesDispaly.filter((recipes) => item.value === value)
+  }
+  recipesDisplay.innerHTML += `
+  <li>
+      ${item.recipe.label}
+      <a href="${item.recipe.url}">
+          <img src="${item.recipe.image}"/>
+      </a>
+      <div> This dish is from: ${item.recipe.source}</div>
+      <div>Total time: ${item.recipe.totalTime} minutes</div>
+  </li>
+`;
+}
+
+
+
 
 const changeHandeler = () => {
   value = input.value;
