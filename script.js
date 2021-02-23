@@ -15,10 +15,7 @@ const fetchData = () => {
       return response.json();
     })
     .then((json) => {
-      console.log("recipe list", json);
       recipeExtract = json.hits
-      console.log("extract", recipeExtract)
-
       recipeExtract.sort((a ,b) => {
         return a.recipe.totalTime - b.recipe.totalTime
                  
@@ -62,7 +59,6 @@ const filterCookingTime = () => {
 const changeHandeler = () => {
   value = input.value;
   API_URL = `https://api.edamam.com/search?q=${value}&app_id=ae955ef4&app_key=ede746169d09b2dacf6c78ef642dbf97&from=0&to=15&calories=591-722&health=alcohol-free`;
-  console.log(value);
   recipesList.innerHTML = "";
   fetchData();
 };
