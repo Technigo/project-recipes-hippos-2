@@ -8,6 +8,15 @@ body {
   position: relative;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-wrapper {
+  display: none;
+}
+
 .container-wrap {
   position: absolute;
   top: 0;

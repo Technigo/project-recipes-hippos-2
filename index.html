@@ -41,15 +41,27 @@
 
     <div class="main-wrapper">
       <section>
-        <h1 class="header-title" id="header-title">
-          Tasty recipes just for you!
-        </h1>
-        <ul id="recipes-list" class="recipes-list"></ul>
-      </section>
+        <div class="title-container">
+          <h1 class="header-title" id="header-title">
+            Tasty recipes just for you!
+          </h1>
 
-      <section>
-        <h2>Filtered list</h2>
-        <ul id="recipes-listfilter"></ul>
+          <div class="slider-wrapper" id="slider-wrapper">
+            <label for="slider">Cooking time</label>
+            <input
+              onchange="filterCookingTime()"
+              id="slider"
+              class="slider"
+              type="range"
+              min="0"
+              max="600"
+              step="1"
+              value="25"
+            />
+            <div id="range-value"></div>
+          </div>
+        </div>
+        <ul id="recipes-list" class="recipes-list"></ul>
       </section>
     </div>
     <script src="./script.js"></script>
