@@ -1,5 +1,7 @@
 const recipesList = document.getElementById("recipes-list");
 const recipesListF = document.getElementById("recipes-listfilter");
+const recipesListFS = document.getElementById("recipes-listsortedfilter");
+
 
 const input = document.getElementById("input");
 //let value = "fish";
@@ -48,11 +50,11 @@ const fetchData = () => {
     
     
     
-  //filterCookingTime()
+  
     
 };
 
-
+/*********************FILTER ************************/
 const filterCookingTime = () => {
   
   console.log("check1")
@@ -78,12 +80,40 @@ const filterCookingTime = () => {
       //do nothing
     }
   }) 
-  console.log("check2")
+  
 } 
 
 
 
-console.log("check3")
+
+/********************SORTING ****************/
+//let newList = []
+
+recipeExtract.sort((a ,b) => {
+  return a.recipe.totalTime - b.recipe.totalTime
+    
+  }) 
+
+
+  
+
+  
+    
+  
+
+   
+  
+
+  
+  
+  
+
+
+
+
+
+
+
 
 
 
